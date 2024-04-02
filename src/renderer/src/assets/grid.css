@@ -1,4 +1,4 @@
-.grid-background {
+/* .grid-background {
   position: absolute;
   top: 0;
   left: 0;
@@ -17,4 +17,238 @@
 .cell.selected {
   background-color: #3498db;
   cursor: pointer;
+} */
+
+/* App.css */
+
+/* Style pour les éléments communs */
+.app {
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px; */
+  display: flex;
+  justify-content: center; /* Centrer horizontalement */
+  align-items: center; /* Centrer verticalement */
+  height: 100vh; /* Utiliser toute la hauteur de la vue */
+  padding: 30px;
+}
+
+.control-panel {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.button {
+  background-color: #c0c0c0;
+  border: 1px solid #000;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.info-panel {
+  width: 30%;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #000;
+}
+
+.additional-info {
+  margin-bottom: 20px;
+}
+
+.additional-info h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.additional-info p {
+  font-size: 16px;
+}
+
+/* Style spécifique pour chaque case */
+.button:nth-child(2n) {
+  background-color: #ff6666; /* Rouge */
+}
+
+.button:nth-child(3n) {
+  background-color: #66ff66; /* Vert */
+}
+
+.button:nth-child(4n) {
+  background-color: #6666ff; /* Bleu */
+}
+
+/* Style pour les informations supplémentaires */
+.info-panel {
+  overflow-y: auto;
+}
+
+/* Ajouter des styles pour les barres de défilement si nécessaire */
+.info-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.info-panel::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.info-panel::-webkit-scrollbar-track {
+  background-color: #ddd;
+  border-radius: 4px;
+}
+
+/* App.css */
+
+/* Style du menu */
+/* .app {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Style du menu
+.menu-container {
+  display: flex;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.menu.left {
+  margin-right: 20px;
+}
+
+.menu.right {
+  margin-left: 20px;
+}
+
+.menu-item {
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: #e0e0e0;
+}
+
+/* Style du panneau de contrôle
+.control-panel {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+/* Style pour les boutons
+.button {
+  background-color: #c0c0c0;
+  border: 1px solid #000;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Style pour les éléments de menu
+.menu-item {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: #e0e0e0;
+} */
+
+/* App.css */
+
+/* Style du menu */
+.menu-container {
+  display: flex;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.menu.left {
+  margin-right: 20px;
+}
+
+.menu.right {
+  margin-left: 20px;
+}
+
+.menu-item {
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: #e0e0e0;
+}
+
+/* Style du panneau de contrôle */
+.control-panel {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+/* Style pour les boutons */
+.button {
+  background-color: #c0c0c0;
+  border: 1px solid #000;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Style pour les éléments de menu */
+.menu-item {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: #e0e0e0;
+}
+
+/* Style pour le menu horizontal */
+.horizontal-menu {
+  display: flex;
+  justify-content: center; /* Centrer horizontalement */
+  margin-top: 20px; /* Espacement vers le haut pour placer le menu en dessous des cases colorées */
+}
+
+.horizontal-menu .menu-item {
+  padding: 10px;
+  margin: 0 5px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.horizontal-menu .menu-item:hover {
+  background-color: #e0e0e0;
 }
