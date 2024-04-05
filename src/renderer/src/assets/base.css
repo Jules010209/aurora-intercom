@@ -37,6 +37,7 @@
   box-sizing: border-box;
   margin: 0;
   font-weight: normal;
+  cursor: crosshair;
 }
 
 ul {

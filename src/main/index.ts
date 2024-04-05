@@ -11,6 +11,8 @@ const createWindow = (): void => {
     title: 'Aurora Intercom',
     width: 900,
     height: 670,
+    minHeight: 590,
+    minWidth: 870,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),

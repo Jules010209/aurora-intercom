@@ -4,21 +4,29 @@
     align-items: center;
     height: 100vh;
     padding: 30px;
+    background-color: #ffffffcb;
 }
 
 .control-panel {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 10px;
 }
 
 .button {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
     background-color: #c0c0c0;
     border: 1px solid #000;
-    padding: 10px;
+    padding: 20px 16px; /* Buttons size */
     text-align: center;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 25px;
+}
+
+.vertical-menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Pour aligner verticalement les éléments */
 }
 
 .info-panel {
@@ -42,7 +50,7 @@
     font-size: 16px;
 }
 
-.button:nth-child(2n) {
+/* .button:nth-child(2n) {
     background-color: #ff6666;
 }
 
@@ -52,7 +60,7 @@
 
 .button:nth-child(4n) {
     background-color: #6666ff;
-}
+} */
 
 .menu-container {
     display: flex;
@@ -61,6 +69,7 @@
 }
 
 .menu {
+    height: max-content;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -75,11 +84,13 @@
 }
 
 .menu-item {
-    padding: 10px;
+    padding: 50px 20px;
     margin-bottom: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .menu-item:hover {
