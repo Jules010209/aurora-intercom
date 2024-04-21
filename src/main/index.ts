@@ -3,8 +3,11 @@ import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import icon from '../../resources/icon.png?asset';
 import * as net from 'net';
+import Store from 'electron-store';
 
 export const TCPClient = new net.Socket();
+
+export const storage = new Store({ watch: true });
 
 const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
