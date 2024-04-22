@@ -1,15 +1,15 @@
-import '../assets/colomn.css';
+import '../assets/panel.css';
 import { useEffect, useState } from 'react';
 import { handleIntercom } from '@renderer/utils/intercom';
 
-enum Positions {
+enum PositionType {
     CTR = "CTR",
     APP = "APP",
     TWR = "TWR",
     MIL = "MIL",
 }
 
-const mockData = {
+const menuData = {
     leftMenu: [
         { id: 1, label: 'BLK' },
         { id: 2, label: 'BLK' },
@@ -17,17 +17,17 @@ const mockData = {
         { id: 4, label: 'BLK' },
     ],
     rightMenu: [
-        { stationType: Positions.CTR, label: 'Center' },
-        { stationType: Positions.APP, label: 'Approach' },
-        { stationType: Positions.TWR, label: 'Tower' },
-        { stationType: Positions.MIL, label: 'Military' }
+        { stationType: PositionType.CTR, label: 'Center' },
+        { stationType: PositionType.APP, label: 'Approach' },
+        { stationType: PositionType.TWR, label: 'Tower' },
+        { stationType: PositionType.MIL, label: 'Military' }
     ]
 }
 
 interface Item {
     id?: number;
     label: string;
-    stationType?: Positions
+    stationType?: PositionType
 }
 
 interface MenuProps {
@@ -35,7 +35,7 @@ interface MenuProps {
     clickable: boolean;
 }
 
-interface Pos {
+interface Positions {
     CTR: Station[];
     APP: Station[];
     TWR: Station[];
@@ -49,9 +49,9 @@ interface Station {
     color: string;
 }
 
-const Colomn = () => {
+const Panel = () => {
     const [stations, setStations] = useState<Station[]>([]);
-    const [stationType, setStationType] = useState<Positions>(Positions.CTR);
+    const [stationType, setStationType] = useState<PositionType>(PositionType.CTR);
     // const [actualPosition, setActualPosition] = useState<string>('');
 
     const Menu = ({ items, clickable }: MenuProps) => {
@@ -61,7 +61,7 @@ const Colomn = () => {
                     <button
                         onClick={() =>
                             clickable
-                                ? setStationType(item.stationType as Positions)
+                                ? setStationType(item.stationType as PositionType)
                                 : null}
                         key={item.id}
                         className="menu-item"
@@ -96,8 +96,19 @@ const Colomn = () => {
             //     setStations(initialArray);
             // });
 
-            window.electron.ipcRenderer.invoke('config', 'positions').then((data: Pos) => {
-                return setStations(data[stationType]);
+            window.electron.ipcRenderer.invoke('config', 'positions').then((data: Positions) => {
+                let initialArray = Array(30).fill({
+                    label: 'XXXX',
+                    frequency: 'XXX.XX',
+                    callsign: 'XXXX_XXX',
+                    color: null
+                }) as Station[];
+
+                const elements: number = Math.min(30, data[stationType].length);
+
+                initialArray = data[stationType].slice(0, elements).concat(initialArray.slice(elements));
+
+                return setStations(initialArray);
             });
         };
 
@@ -128,7 +139,7 @@ const Colomn = () => {
     return (
         <div className="app">
             <div className="vertical-menu-container">
-                <Menu clickable={false} items={mockData.leftMenu} />
+                <Menu clickable={false} items={menuData.leftMenu} />
             </div>
             <div className="control-panel">
                 {stations.map((position) => (
@@ -143,10 +154,10 @@ const Colomn = () => {
                 ))}
             </div>
             <div className="vertical-menu-container">
-                <Menu clickable={true} items={mockData.rightMenu} />
+                <Menu clickable={true} items={menuData.rightMenu} />
             </div>
         </div>
     );
 }
 
-export default Colomn;
+export default Panel;

@@ -18,15 +18,15 @@
     font-weight: bold;
     background-color: #c0c0c0;
     border: 1px solid #000;
-    padding: 20px 16px; /* Buttons size */
+    padding: 12px 22px; /* Buttons size */
     text-align: center;
-    font-size: 25px;
+    font-size: 17px;
 }
 
 .vertical-menu-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Pour aligner verticalement les éléments */
+    align-items: center;
 }
 
 .info-panel {
@@ -34,7 +34,7 @@
     background-color: #f0f0f0;
     padding: 20px;
     border: 1px solid #000;
-    overflow-y: auto; /* Regroupé avec la déclaration précédente */
+    overflow-y: auto;
 }
 
 .additional-info {
@@ -49,18 +49,6 @@
 .additional-info p {
     font-size: 16px;
 }
-
-/* .button:nth-child(2n) {
-    background-color: #ff6666;
-}
-
-.button:nth-child(3n) {
-    background-color: #66ff66;
-}
-
-.button:nth-child(4n) {
-    background-color: #6666ff;
-} */
 
 .menu-container {
     display: flex;
@@ -90,7 +78,6 @@
     font-weight: 600;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
-    /* cursor: pointer; */
 }
 
 .menu-item:hover {

@@ -57,14 +57,12 @@ app.whenReady().then(() => {
   electronApp.setAppUserModelId('com.electron');
 
   try {
-    TCPClient.connect(1130, () => {
-      console.log('Connected TCP!');
-    });
+    TCPClient.connect(1130);
   } catch(err) {
     console.error(err);
 
     return new Notification({
-      title: 'TCP ERROR',
+      title: 'INTERCOM TCP ERROR',
       body: 'An error occurred during tcp connection'
     }).show();
   }
@@ -73,7 +71,7 @@ app.whenReady().then(() => {
     console.error(err);
 
     return new Notification({
-      title: 'TCP ERROR',
+      title: 'INTERCOM TCP ERROR',
       body: 'An error occurred during tcp connection'
     }).show();
   });
@@ -82,7 +80,7 @@ app.whenReady().then(() => {
     console.log('Disconected from TCP Server!');
 
     return new Notification({
-      title: 'TCP ERROR',
+      title: 'INTERCOM TCP ERROR',
       body: 'Disconected from TCP server'
     }).show();
   });
@@ -93,8 +91,6 @@ app.whenReady().then(() => {
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
   });
-
-  ipcMain.on('ping', () => console.log('pong'))
 
   createWindow();
 

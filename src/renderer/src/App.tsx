@@ -1,13 +1,11 @@
-// import Grid from './components/grid'
-import Colomn from './components/colomn';
+import Panel from './components/panel';
 
 function App(): JSX.Element {
   return (
     <>
-      {/* <Grid /> */}
-      <Colomn/>
+      <Panel/>
     </>
   )
 }
 
-export default App
+export default App;

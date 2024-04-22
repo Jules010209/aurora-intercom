@@ -21,13 +21,11 @@
     "build:linux": "electron-vite build && electron-builder --linux"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.8.2",
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
     "electron-builder": "^22.10.5",
     "electron-store": "^8.2.0",
-    "framer-motion": "^11.0.20",
-    "fs": "^0.0.1-security"
+    "framer-motion": "^11.0.20"
   },
   "devDependencies": {
     "@electron-forge/publisher-github": "^7.4.0",
