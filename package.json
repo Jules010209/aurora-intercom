@@ -1,6 +1,6 @@
 {
   "name": "aurora-intercom",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
   "author": "Jules010209",
