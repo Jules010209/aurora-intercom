@@ -29,6 +29,7 @@
     "framer-motion": "^11.0.20"
   },
   "devDependencies": {
+    "@electron-forge/publisher-github": "^7.4.0",
     "@electron-toolkit/eslint-config-prettier": "^2.0.0",
     "@electron-toolkit/eslint-config-ts": "^1.0.1",
     "@electron-toolkit/tsconfig": "^1.0.1",
