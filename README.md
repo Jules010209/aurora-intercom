@@ -1,26 +1,86 @@
-# aurora-intercom
 
-An Electron application with React and TypeScript
+# Aurora Intercom
 
-## Recommended IDE Setup
+A brief description of what this project does and who it's for
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
-## Project Setup
+## Run Locally
 
-### Install
+Clone the project
 
 ```bash
-$ npm install
+  git clone https://github.com/Jules010209/aurora-intercom
 ```
 
-### Development
+Go to the project directory
 
 ```bash
-$ npm run dev
+  cd aurora-intercom
 ```
 
-### Build
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start application
+
+```bash
+  npm run dev
+```
+
+
+## Create config file
+
+Here the config path:
+`C:\Users\%username%\AppData\Roaming\aurora-intercom\config.json`
+
+`> config.json`
+```json
+{
+    "positions": {
+        "CTR": [
+            {
+                "label": "LFBB",
+                "frequency": "130.43",
+                "callsign": "LFBB_CTR",
+                "color": "BLUE"
+            },
+            {
+                "label": "LFBB",
+                "frequency": "120.33",
+                "callsign": "LFBB_U_CTR",
+                "color": "GREEN"
+            }
+        ],
+        "APP": [...],
+        "TWR": [...],
+        "MIL": [...]
+    }
+}
+```
+
+### Positions Reference
+
+| name             | type                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| CTR | array of position (CTR) |
+| APP | array of position (APP) |
+| TWR | array of position (DEL, GND, TWR) |
+| MIL | array of position (GND, TWR, APP, CTR) |
+
+
+### Position Reference
+
+| name             | type                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| label | string |
+| frequency | string |
+| callsign | string |
+| color | string (HTMLColor & HEX) |
+
+## Build
 
 ```bash
 # For windows
