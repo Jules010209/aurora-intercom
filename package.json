@@ -2,7 +2,7 @@
   "name": "aurora-intercom",
   "version": "1.0.0",
   "description": "An Electron application with React and TypeScript",
-  "main": "out/main/index.js",
+  "main": "./out/main/index.js",
   "author": "Jules010209",
   "homepage": "https://electron-vite.org",
   "scripts": {
