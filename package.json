@@ -1,6 +1,6 @@
 {
   "name": "aurora-intercom",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
   "author": "Jules010209",
@@ -13,13 +13,24 @@
     "typecheck": "npm run typecheck:node && npm run typecheck:web",
     "start": "electron-vite preview",
     "dev": "electron-vite dev",
-    "build": "npm run typecheck && electron-vite build",
-    "postinstall": "electron-builder install-app-deps",
-    "build:unpack": "npm run build && electron-builder --dir",
-    "build:win": "npm run build && electron-builder --win",
-    "build:mac": "electron-vite build && electron-builder --mac",
-    "build:linux": "electron-vite build && electron-builder --linux"
+    "build": "npm run typecheck && electron-vite build && electron-builder --win --mac --linux",
+    "release": "electron-builder --mac --windows --linux --publish always",
+    "postinstall": "electron-builder install-app-deps"
   },
+  "build": {
+		"appId": "com.jules010209.intercom",
+		"productName": "aurora-intercom",
+		"mac": {
+			"category": "public.misc.lifestyle"
+		},
+		"dmg": {
+			"icon": false
+		},
+		"linux": {
+			"target": ["AppImage"],
+			"category": "Office"
+		}
+	},
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
