@@ -1,6 +1,6 @@
 {
   "name": "aurora-intercom",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
   "author": "Jules010209",
@@ -26,7 +26,8 @@
     "@electron-toolkit/utils": "^3.0.0",
     "electron-builder": "^22.10.5",
     "electron-store": "^8.2.0",
-    "framer-motion": "^11.0.20"
+    "framer-motion": "^11.0.20",
+    "fs": "^0.0.1-security"
   },
   "devDependencies": {
     "@electron-forge/publisher-github": "^7.4.0",
