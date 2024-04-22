@@ -1,6 +1,6 @@
 {
   "name": "aurora-intercom",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
   "author": "Jules010209",
@@ -24,6 +24,7 @@
     "@chakra-ui/react": "^2.8.2",
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
+    "electron-builder": "^22.10.5",
     "electron-store": "^8.2.0",
     "electron-updater": "^6.1.7",
     "framer-motion": "^11.0.20"
@@ -38,7 +39,6 @@
     "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "^4.2.1",
     "electron": "^28.2.0",
-    "electron-builder": "^24.9.1",
     "electron-vite": "^2.0.0",
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
