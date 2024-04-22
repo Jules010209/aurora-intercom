@@ -23,6 +23,33 @@
     font-size: 17px;
 }
 
+@media screen and (min-width: 1015px),
+       screen and (min-height: 650px) {
+    .button {
+        padding: 20px 30px;
+    }
+}
+
+@media screen and (min-width: 1160px),
+       screen and (min-height: 800px) {
+    .button {
+        padding: 30px 40px;
+    }
+}
+
+@media screen and (min-width: 1160px),
+       screen and (min-height: 800px) {
+    .button {
+        padding: 30px 40px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .button {
+        padding: 32px 70px;
+    }
+}
+
 .vertical-menu-container {
     display: flex;
     flex-direction: column;
