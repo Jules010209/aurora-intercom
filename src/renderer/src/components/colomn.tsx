@@ -1,6 +1,5 @@
 import '../assets/colomn.css';
 import { useEffect, useState } from 'react';
-import { tcpParser } from '@renderer/utils/tcp';
 import { handleIntercom } from '@renderer/utils/intercom';
 
 enum Positions {
@@ -36,10 +35,24 @@ interface MenuProps {
     clickable: boolean;
 }
 
+interface Pos {
+    CTR: Station[];
+    APP: Station[];
+    TWR: Station[];
+    MIL: Station[];
+}
+
+interface Station {
+    label: string;
+    frequency: string;
+    callsign: string;
+    color: string;
+}
+
 const Colomn = () => {
-    const [stations, setStations] = useState<string[]>([]);
+    const [stations, setStations] = useState<Station[]>([]);
     const [stationType, setStationType] = useState<Positions>(Positions.CTR);
-    const [actualPosition, setActualPosition] = useState<string>('');
+    // const [actualPosition, setActualPosition] = useState<string>('');
 
     const Menu = ({ items, clickable }: MenuProps) => {
         return (
@@ -62,25 +75,29 @@ const Colomn = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            window.electron.ipcRenderer.send('send_data', 'ATC');
+            // window.electron.ipcRenderer.send('send_data', 'ATC');
 
-            window.electron.ipcRenderer.on('tcp_data', (_, data: string) => {
-                const parsedStations = tcpParser(data, 'ATC', 0).filter(data => new RegExp(`(?:_${stationType})$`).test(data));
+            // window.electron.ipcRenderer.on('tcp_data', (_, data: string) => {
+            //     const parsedStations = tcpParser(data, 'ATC', 0).filter(data => new RegExp(`(?:_${stationType})$`).test(data));
 
-                // Fetch all stations
-                // setStations(currentStations => {
-                //   const updatedStations = [...currentStations, ...parsedStations];
-                //   return Array.from(new Set(updatedStations));
-                // });
+            //     // Fetch all stations
+            //     // setStations(currentStations => {
+            //     //   const updatedStations = [...currentStations, ...parsedStations];
+            //     //   return Array.from(new Set(updatedStations));
+            //     // });
 
-                // This part of code works
-                let initialArray: string[] = Array(30).fill("XXXX");
+            //     // This part of code works
+            //     let initialArray: string[] = Array(30).fill("XXXX");
 
-                const elements: number = Math.min(30, parsedStations.length);
+            //     const elements: number = Math.min(30, parsedStations.length);
 
-                initialArray = parsedStations.slice(0, elements).concat(initialArray.slice(elements));
+            //     initialArray = parsedStations.slice(0, elements).concat(initialArray.slice(elements));
 
-                setStations(initialArray);
+            //     setStations(initialArray);
+            // });
+
+            window.electron.ipcRenderer.invoke('config', 'positions').then((data: Pos) => {
+                return setStations(data[stationType]);
             });
         };
 
@@ -96,13 +113,16 @@ const Colomn = () => {
         fetchData();
         // fetchActualPosition();
 
-        return () => {
-            window.electron.ipcRenderer.removeAllListeners('tcp_data');
-        };
+        // return () => {
+        //     window.electron.ipcRenderer.removeAllListeners('tcp_data');
+        // };
     }, [stationType]);
 
-    const Button = ({ label }) => {
-        return <div className="button">{label}</div>
+    const Button = ({ position }) => {
+        return <div className="button" style={{ backgroundColor: position.color }}>
+            <div>{position.label}</div>
+            <div>{position.frequency}</div>
+        </div>
     }
 
     return (
@@ -111,10 +131,13 @@ const Colomn = () => {
                 <Menu clickable={false} items={mockData.leftMenu} />
             </div>
             <div className="control-panel">
-                {stations.map((button) => (
+                {stations.map((position) => (
                     <>
-                        <div onClick={() => handleIntercom({ type: "call", position: button })}>
-                            <Button key={button} label={button.split("_")[0]}/>
+                        <div onClick={() => handleIntercom({ type: "call", position: position.callsign })}>
+                            <Button
+                                key={position.label}
+                                position={position}
+                            />
                         </div>
                     </>
                 ))}

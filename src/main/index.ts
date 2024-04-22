@@ -33,6 +33,10 @@ const createWindow = (): void => {
     TCPClient.write(`#${cmd}\n`);
   });
 
+  ipcMain.handle('config', async (_, key) => {
+    return storage.get(key);
+  });
+
   TCPClient.on('data', (data) => {
     mainWindow.webContents.send('tcp_data', data.toString('ascii'));
   });
