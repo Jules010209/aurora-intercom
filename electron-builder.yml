@@ -1,4 +1,4 @@
-appId: com.intercom.app
+appId: com.jules010209.intercom-app
 productName: aurora-intercom
 directories:
   buildResources: build
@@ -43,5 +43,3 @@ publish:
   url: https://github.com/Jules010209/aurora-intercom
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/
-publish:
-  

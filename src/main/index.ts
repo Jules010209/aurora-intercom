@@ -54,7 +54,7 @@ const createWindow = (): void => {
 }
 
 app.whenReady().then(() => {
-  electronApp.setAppUserModelId('com.electron');
+  electronApp.setAppUserModelId('com.jules010209');
 
   try {
     TCPClient.connect(1130);
