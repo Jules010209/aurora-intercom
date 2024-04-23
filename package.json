@@ -1,6 +1,6 @@
 {
   "name": "aurora-intercom",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
   "author": "Jules010209",
@@ -22,13 +22,15 @@
     "publish": "electron-builder --win -p always"
   },
   "build": {
-    "publish": [{
+    "publish": [
+      {
         "provider": "github",
         "owner": "jules010209",
         "repo": "aurora-intercom"
-    }],
-		"appId": "com.jules010209.intercom",
-		"productName": "aurora-intercom",
+      }
+    ],
+    "appId": "com.jules010209.intercom",
+    "productName": "aurora-intercom",
     "win": {
       "publish": [
         "github"
@@ -43,21 +45,25 @@
         }
       ]
     },
-		"mac": {
-			"category": "public.misc.aurora-intercom"
-		},
-		"dmg": {
-			"icon": false
-		},
-		"linux": {
-			"target": ["AppImage"],
-			"category": "Office"
-		}
-	},
+    "mac": {
+      "category": "public.misc.aurora-intercom"
+    },
+    "dmg": {
+      "icon": false
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Office"
+    }
+  },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
+    "electron-log": "^5.1.2",
     "electron-store": "^8.2.0",
+    "electron-updater": "^6.1.8",
     "framer-motion": "^11.0.20"
   },
   "devDependencies": {
