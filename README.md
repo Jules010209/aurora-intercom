@@ -1,8 +1,7 @@
-
 # Aurora Intercom
 
-A brief description of what this project does and who it's for
-
+![image](https://github.com/Jules010209/aurora-intercom/assets/67187964/fbf74818-7fc6-4525-8672-ba5e50a2449b)
+Here's a web application that represents a controller intercom.
 
 ## Run Locally
 
