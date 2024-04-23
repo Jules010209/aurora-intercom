@@ -43,3 +43,5 @@ publish:
   url: https://github.com/Jules010209/aurora-intercom
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/
+publish:
+  
