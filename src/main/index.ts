@@ -4,14 +4,10 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import icon from '../../resources/icon.png?asset';
 import * as net from 'net';
 import Store from 'electron-store';
-import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 
 export const TCPClient = new net.Socket();
-
 export const storage = new Store({ watch: true });
-
-autoUpdater.logger = log;
 
 if(is.dev) {
   // Useful for some dev/debugging tasks, but download can
@@ -19,17 +15,8 @@ if(is.dev) {
   autoUpdater.updateConfigPath = join(__dirname, 'dev-app-update.yml');
 }
 
-log.info('App starting...');
-
-let win: BrowserWindow;
-
-const sendStatusToWindow = (text: string) => {
-  log.info(text);
-  win.webContents.send('message', text);
-}
-
 const createWindow = (): void => {
-  win = new BrowserWindow({
+  const mainWindow = new BrowserWindow({
     title: 'Aurora Intercom',
     width: 900,
     height: 670,
@@ -44,11 +31,11 @@ const createWindow = (): void => {
     }
   });
 
-  win.on('ready-to-show', () => {
-    win.show();
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.show();
   });
 
-  win.webContents.ipc.on('send_data', (_, cmd) => {
+  mainWindow.webContents.ipc.on('send_data', (_, cmd) => {
     TCPClient.write(`#${cmd}\n`);
   });
 
@@ -57,18 +44,18 @@ const createWindow = (): void => {
   });
 
   TCPClient.on('data', (data) => {
-    win.webContents.send('tcp_data', data.toString('ascii'));
+    mainWindow.webContents.send('tcp_data', data.toString('ascii'));
   });
 
-  win.webContents.setWindowOpenHandler((details) => {
+  mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }
   })
 
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    win.loadURL(process.env['ELECTRON_RENDERER_URL'])
+    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
   } else {
-    win.loadFile(join(__dirname, '../renderer/index.html'))
+    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
 }
 
@@ -119,22 +106,22 @@ app.whenReady().then(() => {
 });
 
 app.on('ready', () => {
-  autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdates();
 });
 
 autoUpdater.on('checking-for-update', () => {
-  sendStatusToWindow('Checking for update...');
+  console.log('Checking for update...');
 });
 
 autoUpdater.on('update-available', (_) => {
-  sendStatusToWindow('Update available.');
+  console.log('Update available.');
 });
 
 autoUpdater.on('update-not-available', (_) => {
-  sendStatusToWindow('Update not available.');
+  console.log('Update not available.');
 })
 autoUpdater.on('error', (err) => {
-  sendStatusToWindow('Error in auto-updater. ' + err);
+  console.log('Error in auto-updater. ' + err);
 });
 
 autoUpdater.on('download-progress', (progressObj) => {
@@ -142,11 +129,11 @@ autoUpdater.on('download-progress', (progressObj) => {
   log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
   log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
 
-  sendStatusToWindow(log_message);
+  console.log(log_message);
 });
 
 autoUpdater.on('update-downloaded', (_) => {
-  sendStatusToWindow('Update downloaded');
+  console.log('Update downloaded');
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common

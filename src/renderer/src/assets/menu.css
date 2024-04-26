@@ -1,0 +1,27 @@
+.menu {
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.menu.left {
+    margin-right: 20px;
+}
+
+.menu.right {
+    margin-left: 20px;
+}
+
+.menu-item {
+    padding: 50px 20px;
+    margin-bottom: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+.menu-item:hover {
+    background-color: #e0e0e0;
+}
