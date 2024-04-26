@@ -1,13 +1,8 @@
 import '../assets/panel.css';
 import { useEffect, useState } from 'react';
 import { handleIntercom } from '@renderer/utils/intercom';
-
-enum PositionType {
-    CTR = "CTR",
-    APP = "APP",
-    TWR = "TWR",
-    MIL = "MIL",
-}
+import { ButtonProps, PositionType, Positions, Station } from '@renderer/types/panel';
+import { Menu } from './menu';
 
 const menuData = {
     leftMenu: [
@@ -24,54 +19,11 @@ const menuData = {
     ]
 }
 
-interface Item {
-    id?: number;
-    label: string;
-    stationType?: PositionType
-}
-
-interface MenuProps {
-    items: Item[];
-    clickable: boolean;
-}
-
-interface Positions {
-    CTR: Station[];
-    APP: Station[];
-    TWR: Station[];
-    MIL: Station[];
-}
-
-interface Station {
-    label: string;
-    frequency: string;
-    callsign: string;
-    color: string;
-}
-
 const Panel = () => {
     const [stations, setStations] = useState<Station[]>([]);
     const [stationType, setStationType] = useState<PositionType>(PositionType.CTR);
     // const [actualPosition, setActualPosition] = useState<string>('');
 
-    const Menu = ({ items, clickable }: MenuProps) => {
-        return (
-            <div className="menu">
-                {items.map((item) => (
-                    <button
-                        onClick={() =>
-                            clickable
-                                ? setStationType(item.stationType as PositionType)
-                                : null}
-                        key={item.id}
-                        className="menu-item"
-                    >
-                        {item.label}
-                    </button>
-                ))}
-            </div>
-        )
-    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -129,7 +81,7 @@ const Panel = () => {
         // };
     }, [stationType]);
 
-    const Button = ({ position }) => {
+    const Button = ({ position }: ButtonProps) => {
         return <div className="button" style={{ backgroundColor: position.color }}>
             <div>{position.label}</div>
             <div>{position.frequency}</div>
@@ -139,12 +91,15 @@ const Panel = () => {
     return (
         <div className="app">
             <div className="vertical-menu-container">
-                <Menu clickable={false} items={menuData.leftMenu} />
+                <Menu clickable={false} items={menuData.leftMenu} setStationType={setStationType}/>
             </div>
             <div className="control-panel">
                 {stations.map((position) => (
                     <>
-                        <div onClick={() => handleIntercom({ type: "call", position: position.callsign })}>
+                        <div onClick={() => 
+                            true
+                                ? handleIntercom({ type: "call", position: position.callsign })
+                                : handleIntercom({ type: 'hangup' })}>
                             <Button
                                 key={position.label}
                                 position={position}
@@ -154,7 +109,7 @@ const Panel = () => {
                 ))}
             </div>
             <div className="vertical-menu-container">
-                <Menu clickable={true} items={menuData.rightMenu} />
+                <Menu clickable={true} items={menuData.rightMenu} setStationType={setStationType}/>
             </div>
         </div>
     );
