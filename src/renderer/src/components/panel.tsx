@@ -96,10 +96,7 @@ const Panel = () => {
             <div className="control-panel">
                 {stations.map((position) => (
                     <>
-                        <div onClick={() => 
-                            true
-                                ? handleIntercom({ type: "call", position: position.callsign })
-                                : handleIntercom({ type: 'hangup' })}>
+                        <div onClick={() => handleIntercom({ type: "call", position: position.callsign })}>
                             <Button
                                 key={position.label}
                                 position={position}
