@@ -1,14 +1,14 @@
 import '../assets/panel.css';
 import { useEffect, useState } from 'react';
 import { handleIntercom } from '@renderer/utils/intercom';
-import { ButtonProps, PositionType, Positions, Station } from '@renderer/types/panel';
-import { Menu } from './menu';
+import { ButtonProps, IntercomType, PositionType, Positions, Station } from '@renderer/types/panel';
+import { LeftMenu, Menu } from './menu';
 
 const menuData = {
     leftMenu: [
-        { id: 1, label: 'BLK' },
-        { id: 2, label: 'BLK' },
-        { id: 3, label: 'BLK' },
+        { id: IntercomType.ANSWER, label: 'anwser' },
+        { id: IntercomType.HANGUP, label: 'hangup' },
+        { id: IntercomType.REJECT, label: 'reject' },
         { id: 4, label: 'BLK' },
     ],
     rightMenu: [
@@ -23,7 +23,6 @@ const Panel = () => {
     const [stations, setStations] = useState<Station[]>([]);
     const [stationType, setStationType] = useState<PositionType>(PositionType.CTR);
     // const [actualPosition, setActualPosition] = useState<string>('');
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -91,7 +90,7 @@ const Panel = () => {
     return (
         <div className="app">
             <div className="vertical-menu-container">
-                <Menu clickable={false} items={menuData.leftMenu} setStationType={setStationType}/>
+                <LeftMenu items={menuData.leftMenu}/>
             </div>
             <div className="control-panel">
                 {stations.map((position) => (

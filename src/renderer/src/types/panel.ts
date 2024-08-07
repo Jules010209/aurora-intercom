@@ -5,10 +5,19 @@ export enum PositionType {
     MIL = "MIL",
 }
 
+export interface LeftItem {
+    id: any;
+    label: string;
+}
+
 export interface Item {
     id?: number;
     label: string;
     stationType?: PositionType
+}
+
+export interface LeftMenuProps {
+    items: LeftItem[];
 }
 
 export interface MenuProps {
@@ -33,4 +42,11 @@ export interface Station {
 
 export interface ButtonProps {
     position: Station;
+}
+
+export enum IntercomType {
+    CALL = "call",
+    ANSWER = "answer",
+    HANGUP = "hangup",
+    REJECT = "reject"
 }
