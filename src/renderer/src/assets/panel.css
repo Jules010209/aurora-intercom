@@ -11,6 +11,7 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
+    /* padding: 12px 22px; */
 }
 
 .button {
@@ -21,23 +22,28 @@
     padding: 12px 22px; /* Buttons size */
     text-align: center;
     font-size: 17px;
+    width: 230px; /* Buttons width */
 }
 
-@media screen and (min-width: 1015px),
+/* .button .div {
+    padding: 12px 22px;
+} */
+
+
+/* @media screen and (min-width: 1015px),
        screen and (min-height: 650px) {
     .button {
         padding: 20px 30px;
     }
-}
+}*/
 
-@media screen and (min-width: 1160px),
-       screen and (min-height: 800px) {
+/* @media screen and (max-width: 1160px) {
     .button {
-        padding: 30px 40px;
+        font-size: 11px;
     }
-}
+} */
 
-@media screen and (min-width: 1160px),
+/* @media screen and (min-width: 1160px),
        screen and (min-height: 800px) {
     .button {
         padding: 30px 40px;
@@ -46,9 +52,9 @@
 
 @media screen and (min-width: 1200px) {
     .button {
-        padding: 32px 70px;
+        padding: 25px 60px;
     }
-}
+} */
 
 .vertical-menu-container {
     display: flex;
@@ -75,4 +81,34 @@
 
 .additional-info p {
     font-size: 16px;
+}
+
+/* INTERCOM */
+
+.intercom-call {
+    height:100px;
+    -webkit-animation-name: animation;
+    -webkit-animation-duration: 5s;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;    
+    -webkit-animation-play-state: running;
+    
+    animation-name: animation;
+    animation-duration: 5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;    
+    animation-play-state: running;
+    background-color: #f00;
+}
+
+@-webkit-keyframes animation {
+    0%     {background-color:green;}
+    50.0%  {background-color:#ff9999;}
+    100.0%  {background-color:green;}
+}
+
+@keyframes animation {
+    0%     {background-color:green;}
+    50.0%  {background-color:#ff9999;}
+    100.0%  {background-color:green;}
 }

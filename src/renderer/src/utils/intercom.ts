@@ -3,8 +3,8 @@ interface call {
     position: string;
 }
 
-interface anwser {
-    type: "anwser";
+interface answer {
+    type: "answer";
 }
 
 interface hangup {
@@ -15,7 +15,7 @@ interface reject {
     type: "reject";
 }
 
-type handleFreq = call | anwser | hangup | reject;
+type handleFreq = call | answer | hangup | reject;
 
 export const handleIntercom = (props: handleFreq) => {
     switch(props.type) {
@@ -23,8 +23,8 @@ export const handleIntercom = (props: handleFreq) => {
             window.electron.ipcRenderer.send('send_data', `INTERCOMCALL;${props.position}`);
         }
         break;
-        case 'anwser': {
-            window.electron.ipcRenderer.send('send_data', `INTERCOMANWSER`);
+        case 'answer': {
+            window.electron.ipcRenderer.send('send_data', `INTERCOMANSWER`);
         }
         break;
         case 'hangup': {

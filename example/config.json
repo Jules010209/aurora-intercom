@@ -1,0 +1,516 @@
+{
+    "positions": {
+        "CTR": [
+            {
+                "label": "MARSEILLE NW",
+                "frequency": "123.805",
+                "callsign": "LFMM_NW_CTR",
+                "color": "#1B4F72"
+            },
+            {
+                "label": "MARSEILLE SUD",
+                "frequency": "126.155",
+                "callsign": "LFMM_S_CTR",
+                "color": "#3498DB"
+            },
+            {
+                "label": "MARSEILLE UPPER",
+                "frequency": "128.850",
+                "callsign": "LFMM_U_CTR",
+                "color": "#AED6F1"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "BORDEAUX ‎ ",
+                "frequency": "125.105",
+                "callsign": "LFBB_CTR",
+                "color": "#0B5345"
+            },
+            {
+                "label": "BORDEAUX UPPER",
+                "frequency": "127.675",
+                "callsign": "LFBB_U_CTR",
+                "color": "#73C6B6"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "BARCELONA W",
+                "frequency": "134.680",
+                "callsign": "LECB_W_CTR",
+                "color": "#B7950B"
+            },
+            {
+                "label": "BARCELONA E",
+                "frequency": "135.355",
+                "callsign": "LECB_E_CTR",
+                "color": "#F4D03F"
+            },
+            {
+                "label": "BARCELONA XAR",
+                "frequency": "133.030",
+                "callsign": "LECB_XAR_CTR",
+                "color": "#F7DC6F"
+            },
+            {
+                "label": "BARCELONA DDX",
+                "frequency": "132.580",
+                "callsign": "LECB_DDX_CTR",
+                "color": "#FCF3CF"
+            }
+        ],
+        "APP": [
+            {
+                "label": "MONTELLIER FE",
+                "frequency": "131.055",
+                "callsign": "LFMT_APP",
+                "color": "#ECE696"
+            },
+            {
+                "label": "MONTPELLIER FA",
+                "frequency": "130.855",
+                "callsign": "LFMP_APP",
+                "color": "#E5C092"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "PROVENCE",
+                "frequency": "132.300",
+                "callsign": "LFML_APP",
+                "color": "#ECE696"
+            },
+            {
+                "label": "PROVENCE DEPART",
+                "frequency": "120.205",
+                "callsign": "LFML_DEP",
+                "color": "#EADB97"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "TOULOUSE",
+                "frequency": "129.305",
+                "callsign": "LFBO_APP",
+                "color": "#ECE696"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "CLERMONT",
+                "frequency": "122.225",
+                "callsign": "LFLC_APP",
+                "color": "#ECE696"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "BARCELONA T1",
+                "frequency": "131.125",
+                "callsign": "LEBL_T1_APP",
+                "color": "#ECE696"
+            },
+            {
+                "label": "BARCELONA T2",
+                "frequency": "121.155",
+                "callsign": "LEBL_T2_APP",
+                "color": "#E5C092"
+            },
+            {
+                "label": "BARCELONA T3",
+                "frequency": "126.505",
+                "callsign": "LEBL_T3_APP",
+                "color": "#E5C092"
+            },
+            {
+                "label": "BARCELONA T4",
+                "frequency": "127.700",
+                "callsign": "LEBL_T4_APP",
+                "color": "#E5C092"
+            }
+        ],
+        "TWR": [
+            {
+                "label": "MONTPELLIER",
+                "frequency": "118.775",
+                "callsign": "LFMT_TWR",
+                "color": "#59DA53"
+            },
+            {
+                "label": "PERPIGNAN",
+                "frequency": "118.300",
+                "callsign": "LFMP_TWR",
+                "color": "#59DA53"
+            },
+            {
+                "label": "BEZIERS",
+                "frequency": "120.175",
+                "callsign": "LFMU_TWR",
+                "color": "#59DA53"
+            },
+            {
+                "label": "NIMES",
+                "frequency": "123.200",
+                "callsign": "LFTW_TWR",
+                "color": "#59DA53"
+            },
+            {
+                "label": "PROVENCE",
+                "frequency": "133.100",
+                "callsign": "LFML_TWR",
+                "color": "#59DA53"
+            },
+            {
+                "label": "BLAGNAC",
+                "frequency": "118.100",
+                "callsign": "LFBO_TWR",
+                "color": "#59DA53"
+            },
+            {
+                "label": "CLERMONT",
+                "frequency": "118.625",
+                "callsign": "LFLC_TWR",
+                "color": "#59DA53"
+            },
+            {
+                "label": "RODEZ",
+                "frequency": "118.125",
+                "callsign": "LFCR_TWR",
+                "color": "#FF7052"
+            },
+            {
+                "label": "CARCASSONNE",
+                "frequency": "134.500",
+                "callsign": "LFMK_TWR",
+                "color": "#FF7052"
+            },
+            {
+                "label": "AVIGNON",
+                "frequency": "122.600",
+                "callsign": "LFMV_TWR",
+                "color": "#FF7052"
+            },
+            {
+                "label": "MONTPELLIER",
+                "frequency": "121.955",
+                "callsign": "LFMT_GND",
+                "color": "#5296FF"
+            },
+            {
+                "label": "PERPIGNAN",
+                "frequency": "121.780",
+                "callsign": "LFMP_GND",
+                "color": "#5296FF"
+            },
+            {
+                "label": "NIMES",
+                "frequency": "121.800",
+                "callsign": "LFTW_GND",
+                "color": "#5296FF"
+            },
+            {
+                "label": "PROVENCE",
+                "frequency": "121.905",
+                "callsign": "LFML_GND",
+                "color": "#5296FF"
+            },
+            {
+                "label": "BLAGNAC",
+                "frequency": "121.900",
+                "callsign": "LFBO_GND",
+                "color": "#5296FF"
+            },
+            {
+                "label": "CLERMONT",
+                "frequency": "121.950",
+                "callsign": "LFLC_GND",
+                "color": "#5296FF"
+            },
+            {
+                "label": "AVIGNON",
+                "frequency": "121.755",
+                "callsign": "LFMV_GND",
+                "color": "#5296FF"
+            },
+            {
+                "label": "PROVENCE",
+                "frequency": "121.730",
+                "callsign": "LFML_DEL",
+                "color": "#FAB550"
+            },
+            {
+                "label": "BLAGNAC",
+                "frequency": "121.705",
+                "callsign": "LFML_DEL",
+                "color": "#FAB550"
+            },
+            {
+                "label": "MENDE",
+                "frequency": "119.600",
+                "callsign": "LFNB_FIS_TWR",
+                "color": "#8BFC60"
+            },
+            {
+                "label": "LEZIGNAN",
+                "frequency": "121.205",
+                "callsign": "LFMZ_FIS_TWR",
+                "color": "#8BFC60"
+            },
+            {
+                "label": "CASTRE",
+                "frequency": "118.500",
+                "callsign": "LFCK_FIS_TWR",
+                "color": "#8BFC60"
+            },
+            {
+                "label": "ALBI",
+                "frequency": "118.950",
+                "callsign": "LFCI_FIS_TWR",
+                "color": "#8BFC60"
+            },
+            {
+                "label": "AURILLAC",
+                "frequency": "118.325",
+                "callsign": "LFLW_FIS_TWR",
+                "color": "#8BFC60"
+            },
+            {
+                "label": "LE PUY",
+                "frequency": "118.000",
+                "callsign": "LFHP_FIS_TWR",
+                "color": "#8BFC60"
+            }
+        ],
+        "MIL": [
+            {
+                "label": "MARIUS",
+                "frequency": "121.450",
+                "callsign": "LFMM_MIL_CTR",
+                "color": "#8FCAF2"
+            },
+            {
+                "label": "MARENGO",
+                "frequency": "121.650",
+                "callsign": "LFBB_MIL_CTR",
+                "color": "#8FCAF2"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "MARINA",
+                "frequency": "121.600",
+                "callsign": "LFBW_MIL_CTR",
+                "color": "#8FE3F2"
+            },
+            {
+                "label": "RAMBERT",
+                "frequency": "121.400",
+                "callsign": "LFXV_MIL_CTR",
+                "color": "#8FE3F2"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "ISTRES APP",
+                "frequency": "131.000",
+                "callsign": "LLFMI_APP",
+                "color": "#8F99F2"
+            },
+            {
+                "label": "ORANGE APP",
+                "frequency": "118.925",
+                "callsign": "LFMO_APP",
+                "color": "#8F99F2"
+            },
+            {
+                "label": "SALON APP",
+                "frequency": "135.150",
+                "callsign": "LFMY_APP",
+                "color": "#8F99F2"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "ISTRES TWR",
+                "frequency": "132.600",
+                "callsign": "LFMI_TWR",
+                "color": "#8FF2D3 "
+            },
+            {
+                "label": "ORANGE TWR",
+                "frequency": "128.950",
+                "callsign": "LFMO_TWR",
+                "color": "#8FF2D3 "
+            },
+            {
+                "label": "SALON TWR",
+                "frequency": "130.300",
+                "callsign": "LFMY_TWR",
+                "color": "#8FF2D3 "
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "XXXX",
+                "frequency": "XXX.XXX",
+                "callsign": "",
+                "color": "light_grey"
+            },
+            {
+                "label": "ISTRES SOL",
+                "frequency": "121.850",
+                "callsign": "LFMI_GND",
+                "color": "#F2E88F"
+            }
+        ]
+    }
+}

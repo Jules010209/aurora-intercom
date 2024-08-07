@@ -6,7 +6,7 @@ import { LeftMenu, Menu } from './menu';
 
 const menuData = {
     leftMenu: [
-        { id: IntercomType.ANSWER, label: 'anwser' },
+        { id: IntercomType.ANSWER, label: 'answer' },
         { id: IntercomType.HANGUP, label: 'hangup' },
         { id: IntercomType.REJECT, label: 'reject' },
         { id: 4, label: 'BLK' },
@@ -23,6 +23,7 @@ const Panel = () => {
     const [stations, setStations] = useState<Station[]>([]);
     const [stationType, setStationType] = useState<PositionType>(PositionType.CTR);
     // const [actualPosition, setActualPosition] = useState<string>('');
+    const [calling, setCalling] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -72,12 +73,46 @@ const Panel = () => {
         //   });
         // };
 
+        window.electron.ipcRenderer.on('tcp_data', (_, data: string) => {
+            let callStation = "";
+
+            if(data.match('#INTERCOMCALL') && !data.match('#INTERCOMCALLSTATUS'))
+                callStation = data.split(';')[1];
+
+            console.log(callStation);
+
+            if(data.match('#INTERCOMPHONESTATUS') && data.split(";")[1].match('PHONE_PERFORMING')) {
+                console.log('starting call!');
+                setCalling(true);
+                console.log(calling);
+
+                setInterval(() => {
+                    if(data.match('#INTERCOMCALLSTATUS') && data.split(";")[1].match('CALL_REJECTED')) {
+                        console.log('call rejected!');
+                        setCalling(false);
+                        console.log(calling);
+                    } else if(data.match('#INTERCOMCALLSTATUS') && data.split(";")[1].match('CALL_ACCEPTED')) {
+                        console.log('call accepted!');
+                        setCalling(false);
+                        console.log(calling);
+                    } else {
+                        console.log('call not accepted!');
+                        setCalling(false); 
+                    }
+                
+                    console.log(calling);
+                }, 3000);
+            }
+            // console.log(tcpParser(data, 'INTERCOMCALL', 0));
+            // console.log(tcpParser(data, 'INTERCOMPHONESTATUS', 0));
+        });
+
         fetchData();
         // fetchActualPosition();
 
-        // return () => {
-        //     window.electron.ipcRenderer.removeAllListeners('tcp_data');
-        // };
+        return () => {
+            window.electron.ipcRenderer.removeAllListeners('tcp_data');
+        };
     }, [stationType]);
 
     const Button = ({ position }: ButtonProps) => {
@@ -95,7 +130,10 @@ const Panel = () => {
             <div className="control-panel">
                 {stations.map((position) => (
                     <>
-                        <div onClick={() => handleIntercom({ type: "call", position: position.callsign })}>
+                        <div
+                            key={position.label}
+                            onClick={() => handleIntercom({ type: "call", position: position.callsign })}
+                        >
                             <Button
                                 key={position.label}
                                 position={position}

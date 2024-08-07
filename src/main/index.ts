@@ -45,6 +45,8 @@ const createWindow = (): void => {
 
   TCPClient.on('data', (data) => {
     mainWindow.webContents.send('tcp_data', data.toString('ascii'));
+    
+    console.log(data.toString('ascii'));
   });
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
