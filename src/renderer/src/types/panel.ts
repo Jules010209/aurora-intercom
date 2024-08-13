@@ -42,6 +42,7 @@ export interface Station {
 
 export interface ButtonProps {
     position: Station;
+    color: Station['color'];
 }
 
 export enum IntercomType {

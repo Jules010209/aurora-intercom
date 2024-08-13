@@ -24,6 +24,9 @@ const Panel = () => {
     const [stationType, setStationType] = useState<PositionType>(PositionType.CTR);
     // const [actualPosition, setActualPosition] = useState<string>('');
     const [calling, setCalling] = useState<boolean>(false);
+    // const [callStation, setCallStation] = useState<string>('');
+
+    let callStation = "";
 
     useEffect(() => {
         const fetchData = async () => {
@@ -51,8 +54,8 @@ const Panel = () => {
             window.electron.ipcRenderer.invoke('config', 'positions').then((data: Positions) => {
                 let initialArray = Array(30).fill({
                     label: 'XXXX',
-                    frequency: 'XXX.XX',
-                    callsign: 'XXXX_XXX',
+                    frequency: 'XXX.XXX',
+                    callsign: '',
                     color: null
                 }) as Station[];
 
@@ -73,39 +76,35 @@ const Panel = () => {
         //   });
         // };
 
-        window.electron.ipcRenderer.on('tcp_data', (_, data: string) => {
-            let callStation = "";
+        // Appel
+        // #INTERCOMCALL;LFMV_TWR
 
-            if(data.match('#INTERCOMCALL') && !data.match('#INTERCOMCALLSTATUS'))
-                callStation = data.split(';')[1];
+        // L'appel en train sonner
+        // #INTERCOMPHONESTATUS;PHONE_PERFORMING;
 
-            console.log(callStation);
+        // L'appel est accepté
+        // #INTERCOMCALLSTATUS;CALL_ACCEPTED;LFMV_TWR;;
 
-            if(data.match('#INTERCOMPHONESTATUS') && data.split(";")[1].match('PHONE_PERFORMING')) {
-                console.log('starting call!');
-                setCalling(true);
-                console.log(calling);
+        // L'appel en cours
+        // #INTERCOMPHONESTATUS;PHONE_ONGOING;
 
-                setInterval(() => {
-                    if(data.match('#INTERCOMCALLSTATUS') && data.split(";")[1].match('CALL_REJECTED')) {
-                        console.log('call rejected!');
-                        setCalling(false);
-                        console.log(calling);
-                    } else if(data.match('#INTERCOMCALLSTATUS') && data.split(";")[1].match('CALL_ACCEPTED')) {
-                        console.log('call accepted!');
-                        setCalling(false);
-                        console.log(calling);
-                    } else {
-                        console.log('call not accepted!');
-                        setCalling(false); 
-                    }
-                
-                    console.log(calling);
-                }, 3000);
-            }
-            // console.log(tcpParser(data, 'INTERCOMCALL', 0));
-            // console.log(tcpParser(data, 'INTERCOMPHONESTATUS', 0));
-        });
+        // Raccroche
+        // #INTERHANGUP
+
+        // Telephone se reset
+        // #INTERCOMPHONESTATUS;PHONE_RESET;
+
+
+        // Appel entrant
+        // #INTERCOMCALLSTATUS;CALL_INCOMING;LFML_APP;;
+
+        // #INTERCOMPHONESTATUS;PHONE_RECEIVING;
+
+        // #INTERCOMCALLSTATUS;CALL_CANCELED;;;
+
+        // #INTERCOMPHONESTATUS;PHONE_RESET;
+
+        
 
         fetchData();
         // fetchActualPosition();
@@ -115,8 +114,48 @@ const Panel = () => {
         };
     }, [stationType]);
 
-    const Button = ({ position }: ButtonProps) => {
-        return <div className="button" style={{ backgroundColor: position.color }}>
+    useEffect(() => {
+        window.electron.ipcRenderer.on('tcp_data', (_, data: string) => {
+            if(data.match('#INTERCOMCALL') && !data.match('#INTERCOMCALLSTATUS'))
+                callStation = data.split(';')[1];
+                console.log(callStation);
+
+            if(data.match('#INTERCOMPHONESTATUS') && data.split(";")[1].match('PHONE_PERFORMING')) {
+                // Start a call
+                setCalling(true);
+
+                // setInterval(() => {
+                //     if(data.match('#INTERCOMCALLSTATUS') && data.split(";")[1].match('CALL_REJECTED')) {
+                //         console.log('call rejected!');
+                //         setCalling(false);
+                //         console.log(calling);
+                //     } else if(data.match('#INTERCOMCALLSTATUS') && data.split(";")[1].match('CALL_ACCEPTED')) {
+                //         console.log('call accepted!');
+                //         setCalling(false);
+                //         console.log(calling);
+                //     } else {
+                //         console.log('call not accepted!');
+                //         setCalling(false); 
+                //     }
+                
+                //     console.log(calling);
+                // }, 3000);
+            } else {
+                // Call perfoming stop
+                setCalling(false);
+                callStation = '';
+            }
+            // console.log(tcpParser(data, 'INTERCOMCALL', 0));
+            // console.log(tcpParser(data, 'INTERCOMPHONESTATUS', 0));
+        });
+
+        return () => {
+            window.electron.ipcRenderer.removeAllListeners('tcp_data');
+        };
+    });
+
+    const Button = ({ position, color }: ButtonProps) => {
+        return <div className="button" style={{ backgroundColor: color }}>
             <div>{position.label}</div>
             <div>{position.frequency}</div>
         </div>
@@ -137,6 +176,7 @@ const Panel = () => {
                             <Button
                                 key={position.label}
                                 position={position}
+                                color={position.callsign === callStation && calling ? "green" : position.color}
                             />
                         </div>
                     </>
