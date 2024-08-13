@@ -6,7 +6,7 @@ import { LeftMenu, Menu } from './menu';
 
 const menuData = {
     leftMenu: [
-        { id: IntercomType.ANSWER, label: 'anwser' },
+        { id: IntercomType.ANSWER, label: 'answer' },
         { id: IntercomType.HANGUP, label: 'hangup' },
         { id: IntercomType.REJECT, label: 'reject' },
         { id: 4, label: 'BLK' },
@@ -50,7 +50,7 @@ const Panel = () => {
             window.electron.ipcRenderer.invoke('config', 'positions').then((data: Positions) => {
                 let initialArray = Array(30).fill({
                     label: 'XXXX',
-                    frequency: 'XXX.XX',
+                    frequency: 'XXX.XXX',
                     callsign: 'XXXX_XXX',
                     color: null
                 }) as Station[];
