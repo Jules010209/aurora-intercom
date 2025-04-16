@@ -22,9 +22,12 @@ const menuData = {
 const Panel = () => {
     const [stations, setStations] = useState<Station[]>([]);
     const [stationType, setStationType] = useState<PositionType>(PositionType.CTR);
-    // const [actualPosition, setActualPosition] = useState<string>('');
+    const [flashingCalls, setFlashingCalls] = useState<string[]>([]);
 
     useEffect(() => {
+        // Nettoyage des anciens listeners avant d'en ajouter un nouveau
+        window.electron.ipcRenderer.removeAllListeners('tcp_data');
+
         const fetchData = async () => {
             // window.electron.ipcRenderer.send('send_data', 'ATC');
 
@@ -72,19 +75,63 @@ const Panel = () => {
         //   });
         // };
 
+        window.electron.ipcRenderer.on('tcp_data', (_, data: string) => {
+            let callStation = "";
+
+            if (data.startsWith('#INTERCOMCALLSTATUS;CALL_INCOMING;')) {
+                callStation = data.split(';')[2];
+                if (callStation) {
+                    setFlashingCalls((prev) => prev.includes(callStation) ? prev : [...prev, callStation]);
+                }
+            }
+
+            if (data.match('#INTERCOMCALL') && !data.match('#INTERCOMCALLSTATUS')) {
+                callStation = data.split(';')[1];
+            }
+
+            if (data.match('#INTERCOMPHONESTATUS') && data.split(";")[1]?.match('PHONE_RECEIVING')) {
+                if (callStation) {
+                    setFlashingCalls((prev) => prev.includes(callStation) ? prev : [...prev, callStation]);
+                }
+            }
+
+            if (data.match('#INTERCOMPHONESTATUS') && (
+                data.split(";")[1]?.match('PHONE_PERFORMING') ||
+                data.split(";")[1]?.match('PHONE_ONGOING') ||
+                data.split(";")[1]?.match('PHONE_RESET')
+            )) {
+                if (callStation) {
+                    setFlashingCalls((prev) => prev.filter(c => c !== callStation));
+                } else {
+                    setFlashingCalls([]);
+                }
+            }
+
+            if (data.startsWith('#INTERCOMCALLSTATUS;CALL_ACCEPTED;') || data.startsWith('#INTERCOMCALLSTATUS;CALL_REJECTED;')) {
+                callStation = data.split(';')[2];
+                if (callStation) {
+                    setFlashingCalls((prev) => prev.filter(c => c !== callStation));
+                }
+            }
+        });
+
         fetchData();
         // fetchActualPosition();
 
-        // return () => {
-        //     window.electron.ipcRenderer.removeAllListeners('tcp_data');
-        // };
+        return () => {
+            window.electron.ipcRenderer.removeAllListeners('tcp_data');
+        };
     }, [stationType]);
 
     const Button = ({ position }: ButtonProps) => {
-        return <div className="button" style={{ backgroundColor: position.color }}>
-            <div>{position.label}</div>
-            <div>{position.frequency}</div>
-        </div>
+        // Ajout de la classe de clignotement si le callsign est dans flashingCalls
+        const isFlashing = flashingCalls.includes(position.callsign);
+        return (
+            <div className={`button${isFlashing ? ' intercom-call' : ''}`} style={{ backgroundColor: position.color }}>
+                <div>{position.label}</div>
+                <div>{position.frequency}</div>
+            </div>
+        );
     }
 
     return (
@@ -95,7 +142,10 @@ const Panel = () => {
             <div className="control-panel">
                 {stations.map((position) => (
                     <>
-                        <div onClick={() => handleIntercom({ type: "call", position: position.callsign })}>
+                        <div
+                            key={position.label}
+                            onClick={() => handleIntercom({ type: "call", position: position.callsign })}
+                        >
                             <Button
                                 key={position.label}
                                 position={position}
