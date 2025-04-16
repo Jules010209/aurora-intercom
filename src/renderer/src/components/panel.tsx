@@ -22,10 +22,12 @@ const menuData = {
 const Panel = () => {
     const [stations, setStations] = useState<Station[]>([]);
     const [stationType, setStationType] = useState<PositionType>(PositionType.CTR);
-    // const [actualPosition, setActualPosition] = useState<string>('');
-    const [calling, setCalling] = useState<boolean>(false);
+    const [flashingCalls, setFlashingCalls] = useState<string[]>([]);
 
     useEffect(() => {
+        // Nettoyage des anciens listeners avant d'en ajouter un nouveau
+        window.electron.ipcRenderer.removeAllListeners('tcp_data');
+
         const fetchData = async () => {
             // window.electron.ipcRenderer.send('send_data', 'ATC');
 
@@ -76,35 +78,41 @@ const Panel = () => {
         window.electron.ipcRenderer.on('tcp_data', (_, data: string) => {
             let callStation = "";
 
-            if(data.match('#INTERCOMCALL') && !data.match('#INTERCOMCALLSTATUS'))
-                callStation = data.split(';')[1];
-
-            console.log(callStation);
-
-            if(data.match('#INTERCOMPHONESTATUS') && data.split(";")[1].match('PHONE_PERFORMING')) {
-                console.log('starting call!');
-                setCalling(true);
-                console.log(calling);
-
-                setInterval(() => {
-                    if(data.match('#INTERCOMCALLSTATUS') && data.split(";")[1].match('CALL_REJECTED')) {
-                        console.log('call rejected!');
-                        setCalling(false);
-                        console.log(calling);
-                    } else if(data.match('#INTERCOMCALLSTATUS') && data.split(";")[1].match('CALL_ACCEPTED')) {
-                        console.log('call accepted!');
-                        setCalling(false);
-                        console.log(calling);
-                    } else {
-                        console.log('call not accepted!');
-                        setCalling(false); 
-                    }
-                
-                    console.log(calling);
-                }, 3000);
+            if (data.startsWith('#INTERCOMCALLSTATUS;CALL_INCOMING;')) {
+                callStation = data.split(';')[2];
+                if (callStation) {
+                    setFlashingCalls((prev) => prev.includes(callStation) ? prev : [...prev, callStation]);
+                }
             }
-            // console.log(tcpParser(data, 'INTERCOMCALL', 0));
-            // console.log(tcpParser(data, 'INTERCOMPHONESTATUS', 0));
+
+            if (data.match('#INTERCOMCALL') && !data.match('#INTERCOMCALLSTATUS')) {
+                callStation = data.split(';')[1];
+            }
+
+            if (data.match('#INTERCOMPHONESTATUS') && data.split(";")[1]?.match('PHONE_RECEIVING')) {
+                if (callStation) {
+                    setFlashingCalls((prev) => prev.includes(callStation) ? prev : [...prev, callStation]);
+                }
+            }
+
+            if (data.match('#INTERCOMPHONESTATUS') && (
+                data.split(";")[1]?.match('PHONE_PERFORMING') ||
+                data.split(";")[1]?.match('PHONE_ONGOING') ||
+                data.split(";")[1]?.match('PHONE_RESET')
+            )) {
+                if (callStation) {
+                    setFlashingCalls((prev) => prev.filter(c => c !== callStation));
+                } else {
+                    setFlashingCalls([]);
+                }
+            }
+
+            if (data.startsWith('#INTERCOMCALLSTATUS;CALL_ACCEPTED;') || data.startsWith('#INTERCOMCALLSTATUS;CALL_REJECTED;')) {
+                callStation = data.split(';')[2];
+                if (callStation) {
+                    setFlashingCalls((prev) => prev.filter(c => c !== callStation));
+                }
+            }
         });
 
         fetchData();
@@ -116,10 +124,14 @@ const Panel = () => {
     }, [stationType]);
 
     const Button = ({ position }: ButtonProps) => {
-        return <div className="button" style={{ backgroundColor: position.color }}>
-            <div>{position.label}</div>
-            <div>{position.frequency}</div>
-        </div>
+        // Ajout de la classe de clignotement si le callsign est dans flashingCalls
+        const isFlashing = flashingCalls.includes(position.callsign);
+        return (
+            <div className={`button${isFlashing ? ' intercom-call' : ''}`} style={{ backgroundColor: position.color }}>
+                <div>{position.label}</div>
+                <div>{position.frequency}</div>
+            </div>
+        );
     }
 
     return (

@@ -88,13 +88,13 @@
 .intercom-call {
     height:100px;
     -webkit-animation-name: animation;
-    -webkit-animation-duration: 5s;
+    -webkit-animation-duration: 1s;
     -webkit-animation-timing-function: ease-in-out;
     -webkit-animation-iteration-count: infinite;    
     -webkit-animation-play-state: running;
     
     animation-name: animation;
-    animation-duration: 5s;
+    animation-duration: 1s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;    
     animation-play-state: running;
@@ -102,13 +102,13 @@
 }
 
 @-webkit-keyframes animation {
-    0%     {background-color:green;}
+    0%     {background-color:red;}
     50.0%  {background-color:#ff9999;}
-    100.0%  {background-color:green;}
+    100.0%  {background-color:red;}
 }
 
 @keyframes animation {
-    0%     {background-color:green;}
+    0%     {background-color:red;}
     50.0%  {background-color:#ff9999;}
-    100.0%  {background-color:green;}
+    100.0%  {background-color:red;}
 }
