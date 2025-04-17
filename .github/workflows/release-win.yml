@@ -36,6 +36,5 @@ jobs:
         with:
           files: |
             dist/*.exe
-            dist/*.msi
         env:
           GITHUB_TOKEN: ${{ secrets.GTH_TOKEN }}

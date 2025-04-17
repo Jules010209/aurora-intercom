@@ -25,36 +25,39 @@
     width: 230px; /* Buttons width */
 }
 
-/* .button .div {
-    padding: 12px 22px;
-} */
+.button {
+    width: 100%;
+    max-width: 230px;
+    box-sizing: border-box;
+    transition:
+        width 0.2s,
+        font-size 0.2s,
+        padding 0.2s;
+}
 
-
-/* @media screen and (min-width: 1015px),
-       screen and (min-height: 650px) {
+@media (max-width: 1200px) {
     .button {
-        padding: 20px 30px;
-    }
-}*/
-
-/* @media screen and (max-width: 1160px) {
-    .button {
-        font-size: 11px;
-    }
-} */
-
-/* @media screen and (min-width: 1160px),
-       screen and (min-height: 800px) {
-    .button {
-        padding: 30px 40px;
+        max-width: 180px;
+        font-size: 15px;
+        padding: 10px 14px;
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media (max-width: 900px) {
     .button {
-        padding: 25px 60px;
+        max-width: 140px;
+        font-size: 13px;
+        padding: 8px 10px;
     }
-} */
+}
+
+@media (max-width: 600px) {
+    .button {
+        max-width: 100px;
+        font-size: 11px;
+        padding: 6px 4px;
+    }
+}
 
 .vertical-menu-container {
     display: flex;
@@ -86,29 +89,41 @@
 /* INTERCOM */
 
 .intercom-call {
-    height:100px;
+    height: 100px;
     -webkit-animation-name: animation;
     -webkit-animation-duration: 1s;
     -webkit-animation-timing-function: ease-in-out;
-    -webkit-animation-iteration-count: infinite;    
+    -webkit-animation-iteration-count: infinite;
     -webkit-animation-play-state: running;
-    
+
     animation-name: animation;
     animation-duration: 1s;
     animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;    
+    animation-iteration-count: infinite;
     animation-play-state: running;
     background-color: #f00;
 }
 
 @-webkit-keyframes animation {
-    0%     {background-color:red;}
-    50.0%  {background-color:#ff9999;}
-    100.0%  {background-color:red;}
+    0% {
+        background-color: red;
+    }
+    50.0% {
+        background-color: #ff9999;
+    }
+    100.0% {
+        background-color: red;
+    }
 }
 
 @keyframes animation {
-    0%     {background-color:red;}
-    50.0%  {background-color:#ff9999;}
-    100.0%  {background-color:red;}
+    0% {
+        background-color: red;
+    }
+    50.0% {
+        background-color: #ff9999;
+    }
+    100.0% {
+        background-color: red;
+    }
 }
