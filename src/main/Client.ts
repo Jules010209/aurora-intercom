@@ -32,11 +32,11 @@ export class TCPClient {
 
         this.client.on('data', (data) => {
             this.buffer += data.toString('ascii');
-            let index;
+            let index: number;
+
             while ((index = this.buffer.indexOf('\n')) !== -1) {
                 const message = this.buffer.slice(0, index);
                 this.buffer = this.buffer.slice(index + 1);
-                console.log(message);
                 this.onMessage(message);
             }
         });

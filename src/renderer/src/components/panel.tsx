@@ -25,7 +25,6 @@ const Panel = () => {
     const [flashingCalls, setFlashingCalls] = useState<string[]>([]);
 
     useEffect(() => {
-        // Nettoyage des anciens listeners avant d'en ajouter un nouveau
         window.electron.ipcRenderer.removeAllListeners('tcp_data');
 
         const fetchData = async () => {
@@ -124,8 +123,8 @@ const Panel = () => {
     }, [stationType]);
 
     const Button = ({ position }: ButtonProps) => {
-        // Ajout de la classe de clignotement si le callsign est dans flashingCalls
         const isFlashing = flashingCalls.includes(position.callsign);
+
         return (
             <div className={`button${isFlashing ? ' intercom-call' : ''}`} style={{ backgroundColor: position.color }}>
                 <div>{position.label}</div>

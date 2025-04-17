@@ -14,6 +14,7 @@ if (is.dev) {
 
 let mainWindow: BrowserWindow | null = null;
 let tcpClient: TCPClient;
+let tcpErrorNotified = false;
 
 const createWindow = (): void => {
   mainWindow = new BrowserWindow({
@@ -33,23 +34,30 @@ const createWindow = (): void => {
 
   tcpClient = new TCPClient(
     (msg) => {
+      tcpErrorNotified = false;
       if (mainWindow) {
         mainWindow.webContents.send('tcp_data', msg);
       }
     },
     (err) => {
       console.error(err);
-      new Notification({
-        title: 'INTERCOM TCP ERROR',
-        body: 'An error occurred during tcp connection'
-      }).show();
+      if (!tcpErrorNotified) {
+        new Notification({
+          title: 'INTERCOM TCP ERROR',
+          body: 'An error occurred during tcp connection'
+        }).show();
+        tcpErrorNotified = true;
+      }
     },
     () => {
       console.log('Disconnected from TCP Server!');
-      new Notification({
-        title: 'INTERCOM TCP ERROR',
-        body: 'Disconnected from TCP server'
-      }).show();
+      if (!tcpErrorNotified) {
+        new Notification({
+          title: 'INTERCOM TCP ERROR',
+          body: 'Disconnected from TCP server'
+        }).show();
+        tcpErrorNotified = true;
+      }
     }
   );
 
@@ -138,7 +146,6 @@ autoUpdater.on('update-downloaded', (_) => {
   }, 4000);
 });
 
-// Quit when all windows are closed, except on macOS.
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
