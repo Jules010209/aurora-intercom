@@ -6,16 +6,16 @@ import { LeftMenu, Menu } from './menu';
 
 const menuData = {
     leftMenu: [
-        { id: IntercomType.ANSWER, label: 'answer' },
-        { id: IntercomType.HANGUP, label: 'hangup' },
-        { id: IntercomType.REJECT, label: 'reject' },
+        { id: IntercomType.ANSWER, label: 'ANSWER' },
+        { id: IntercomType.HANGUP, label: 'HANGUP' },
+        { id: IntercomType.REJECT, label: 'REJECT' },
         { id: 4, label: 'BLK' },
     ],
     rightMenu: [
-        { stationType: PositionType.CTR, label: 'Center' },
-        { stationType: PositionType.APP, label: 'Approach' },
-        { stationType: PositionType.TWR, label: 'Tower' },
-        { stationType: PositionType.MIL, label: 'Military' }
+        { stationType: PositionType.CTR, label: 'CTR' },
+        { stationType: PositionType.APP, label: 'APP' },
+        { stationType: PositionType.TWR, label: 'TWR' },
+        { stationType: PositionType.MIL, label: 'MIL' }
     ]
 }
 
