@@ -3,7 +3,7 @@ import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import icon from '../../resources/icon.png?asset';
 import Store from 'electron-store';
-import { autoUpdater, AppUpdater } from 'electron-updater';
+import { autoUpdater } from 'electron-updater';
 import { TCPClient } from './Client';
 
 autoUpdater.autoDownload = false;
