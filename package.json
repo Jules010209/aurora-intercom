@@ -1,6 +1,6 @@
 {
   "name": "aurora-intercom",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
   "author": "Jules010209",
@@ -21,6 +21,11 @@
     "postinstall": "electron-builder install-app-deps",
     "publish": "electron-builder --win -p always"
   },
+  "repository": "https://github.com/jules010209/aurora-intercom",
+  "publish": {
+    "provider": "github",
+    "releaseType": "release"
+  },
   "build": {
     "publish": [
       {
@@ -31,6 +36,9 @@
     ],
     "appId": "com.jules010209.intercom",
     "productName": "aurora-intercom",
+    "directories": {
+      "output": "dist"
+    },
     "win": {
       "publish": [
         "github"
@@ -74,15 +82,15 @@
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "@vitejs/plugin-react": "^4.2.1",
-    "electron": "^28.2.0",
-    "electron-builder": "^24.13.3",
-    "electron-vite": "^2.0.0",
+    "electron": "^40.6.1",
+    "electron-builder": "^26.8.1",
+    "electron-vite": "^5.0.0",
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
     "prettier": "^3.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.3.3",
-    "vite": "^5.0.12"
+    "vite": "^7.3.1"
   }
 }

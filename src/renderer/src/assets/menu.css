@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'ControlRegular';
+    src: url('./Control_Regular.ttf') format('truetype');
+}
+
 .menu {
     height: max-content;
     display: flex;
@@ -14,12 +19,13 @@
 }
 
 .menu-item {
-    padding: 50px 20px;
+    padding: 40px 20px;
     margin-bottom: 5px;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 600;
+    font-family: 'ControlRegular', Courier, monospace;
+    font-weight: 450;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
+    font-size: 25px;
 }
 
 .menu-item:hover {

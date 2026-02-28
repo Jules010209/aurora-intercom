@@ -3,8 +3,11 @@ import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import icon from '../../resources/icon.png?asset';
 import Store from 'electron-store';
-import { autoUpdater } from 'electron-updater';
+import { autoUpdater, AppUpdater } from 'electron-updater';
 import { TCPClient } from './Client';
+
+autoUpdater.autoDownload = false;
+autoUpdater.autoInstallOnAppQuit = true;
 
 export const storage = new Store({ watch: true });
 
@@ -97,6 +100,8 @@ app.whenReady().then(() => {
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
+
+  autoUpdater.checkForUpdates();
 });
 
 app.on('ready', () => {

@@ -35,6 +35,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            dist/*.exe
+            dist/*
         env:
           GITHUB_TOKEN: ${{ secrets.GTH_TOKEN }}
